@@ -10,6 +10,8 @@ class NewGame {
     }
 
     drawBoard() {
+        console.log(XTILES)
+        console.log(grid)
         for (let i = 0; i < YTILES; i++) {
             for (let j = 0; j < XTILES; j++) {
                 const tile = create("div");
