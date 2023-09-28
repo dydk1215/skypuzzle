@@ -1,4 +1,4 @@
-import * from "./constants.js"
+import { XTILES, YTILES, CAP, grid, tiles, pictures } from "./constants.js"
 import { getCoords, getImgURL } from "./utils.js"
 
 export default class Game {
