@@ -1,4 +1,4 @@
-import { XTILES, CAP } from "./constants.js"
+import { XTILES, CAP } from "./src/constants.js"
 
 const create = (tag, className) => {
     const el = document.createElement(tag);
