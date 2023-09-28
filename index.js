@@ -1,4 +1,4 @@
-import { XTILES, YTILES, grid } from "./src/constants.js"
+import { XTILES, YTILES, grid, tiles } from "./src/constants.js"
 import { create, shuffleOrder } from "./src/utils.js"
 import Game from "./src/Game.js"
 
