@@ -46,4 +46,4 @@ const getImgURL = (element) => {
     return elStyle[1];
 }
 
-module.exports = { create, getRandNums, checkValidity, shuffleOrder, getCoords, getImgURL }
+export = { create, getRandNums, checkValidity, shuffleOrder, getCoords, getImgURL }
