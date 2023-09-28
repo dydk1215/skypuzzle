@@ -1,3 +1,5 @@
+import { XTILES, YTILES } from "./src/constants.js"
+import { create, shuffleOrder } from "./src/utils.js"
 import Game from "./src/Game.js"
 
 class NewGame {
