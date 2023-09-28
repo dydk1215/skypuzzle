@@ -14,4 +14,4 @@ const pictures = [
     ["./img/p08/0x0.jpg", "./img/p08/1x0.jpg", "./img/p08/2x0.jpg", "./img/p08/0x1.jpg", "./img/p08/1x1.jpg", "./img/p08/2x1.jpg", "./img/p08/0x2.jpg", "./img/p08/1x2.jpg", "./img/p08/2x2.jpg"]
 ];
 
-export = { XTILES, YTILES, CAP, grid, pictures, tiles }
+export { XTILES, YTILES, CAP, grid, pictures, tiles }
