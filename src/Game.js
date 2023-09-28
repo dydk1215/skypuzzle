@@ -1,5 +1,5 @@
-const { XTILES, YTILES, CAP, grid, pictures, tiles } = require("./src/constants.js");
-const { create, getRandNums, checkValidity, shuffleOrder, getCoords, getImgURL } = require("./src/utils.js");
+const { XTILES, YTILES, CAP, grid, pictures, tiles } = require("./constants.js");
+const { create, getRandNums, checkValidity, shuffleOrder, getCoords, getImgURL } = require("./utils.js");
 
 class NewGame {
     constructor(id) {
@@ -89,3 +89,5 @@ class Game {
         console.log("winner!");
     }
 }
+
+module.exports = { NewGame, Game }
