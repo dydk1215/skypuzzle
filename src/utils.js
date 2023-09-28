@@ -1,4 +1,4 @@
-import CAP from "./constants.js"
+import { CAP } from "./constants.js"
 
 const create = (tag, className) => {
     const el = document.createElement(tag);
