@@ -31,4 +31,19 @@ const shuffleOrder = () => {
     return randnums;
 }
 
-module.exports = { create, getRandNums, checkValidity, shuffleOrder }
+const getCoords = (classes) => {
+    let x, y;
+    for (const coord of classes) {
+        if (coord[0] === "x") x = parseInt(coord.substring(1));
+        if (coord[0] === "y") y = parseInt(coord.substring(1));
+    }
+    const coords = { 'x': x, 'y': y };
+    return coords;
+}
+
+const getImgURL = (element) => {
+    const elStyle = element.style.backgroundImage.split('"');
+    return elStyle[1];
+}
+
+module.exports = { create, getRandNums, checkValidity, shuffleOrder, getCoords, getImgURL }
