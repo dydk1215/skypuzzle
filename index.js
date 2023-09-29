@@ -31,5 +31,3 @@ class NewGame {
         }
     }
 }
-
-new NewGame(7);
