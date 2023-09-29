@@ -31,3 +31,13 @@ class NewGame {
         }
     }
 }
+
+const menu = document.querySelector(".menu");
+const buttons = menu.children;
+for (const button of buttons) {
+    button.addEventListener("click", (e) => {
+        const gameId = e.target.value;
+        grid.innerHTML = "";
+        new NewGame(gameId);
+    });
+}
