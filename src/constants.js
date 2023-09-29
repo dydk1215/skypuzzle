@@ -1,6 +1,6 @@
-export const XTILES = 3;
-export const YTILES = 3;
-export const CAP = 9;
+const XTILES = 3;
+const YTILES = 3;
+const CAP = 9;
 const grid = document.querySelector(".grid");
 const tiles = grid.children;
 const pictures = [
@@ -14,4 +14,4 @@ const pictures = [
     ["./img/p08/0x0.jpg", "./img/p08/1x0.jpg", "./img/p08/2x0.jpg", "./img/p08/0x1.jpg", "./img/p08/1x1.jpg", "./img/p08/2x1.jpg", "./img/p08/0x2.jpg", "./img/p08/1x2.jpg", "./img/p08/2x2.jpg"]
 ];
 
-export { grid, tiles, pictures }
+export { XTILES, YTILES, CAP, grid, tiles, pictures }
