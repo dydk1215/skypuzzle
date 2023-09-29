@@ -7,13 +7,28 @@
     <title>thatskypuzzle</title>
 
     <style>
-        .grid,
-        .copy {
+        body {
+            margin: 0px;
+        }
+
+        .header {
+            padding-left: 50px;
+        }
+
+        .grid {
             display: grid;
             grid-template-columns: auto auto auto;
             grid-template-rows: auto auto auto;
             justify-content: center;
             align-items: center;
+        }
+
+        .board {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 700px;
+            height: 700px;
         }
 
         .tile {
@@ -26,6 +41,38 @@
 
         .tile:hover {
             opacity: 0.8;
+        }
+
+        .game {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-items: center;
+            width: 120px;
+        }
+
+        .menu>* {
+            margin: 10px;
+        }
+
+        button {
+            border: solid 1px rgb(79, 79, 79);
+            background-color: white;
+            font-weight: bold;
+            border-radius: 6px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 17px;
+        }
+
+        button:active {
+            background-color: rgb(231, 232, 249);
         }
 
         .moveleft {
@@ -94,11 +141,41 @@
             }
         }
     </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const parent = document.querySelector(".menu");
+            const list = parent.children;
+            for (const elem of list) {
+                elem.addEventListener("click", (e) => {
+                    const gameId = e.target.value;
+                    const parent = document.querySelector(".grid");
+                    parent.innerHTML = "";
+                    new NewGame(gameId);
+                })
+            }
+        });
+    </script>
 </head>
 
 <body>
-    <div>
-        <div class="grid">
+    <div class="header">
+        <h1>thatskypuzzle</h1>
+    </div>
+    <div class="game">
+        <div class="menu">
+            <button value="0">パズル 1</button>
+            <button value="1">パズル 2</button>
+            <button value="2">パズル 3</button>
+            <button value="3">パズル 4</button>
+            <button value="4">パズル 5</button>
+            <button value="5">パズル 6</button>
+            <button value="6">パズル 7</button>
+            <button value="7">パズル 8</button>
+        </div>
+        <div class="board">
+            <div class="grid">
+            </div>
         </div>
     </div>
 
