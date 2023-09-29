@@ -1,10 +1,6 @@
-import { XTILES, YTILES, CAP, grid, tiles, pictures } from "./src/constants.js"
+import { XTILES, YTILES, grid, tiles, pictures } from "./src/constants.js"
 import { create, shuffleOrder } from "./src/utils.js"
 import Game from "./src/Game.js"
-
-console.log("check")
-console.log(XTILES)
-        console.log(grid)
 
 class NewGame {
     constructor(id) {
@@ -14,7 +10,6 @@ class NewGame {
     }
 
     drawBoard() {
-        
         for (let i = 0; i < YTILES; i++) {
             for (let j = 0; j < XTILES; j++) {
                 const tile = create("div");
