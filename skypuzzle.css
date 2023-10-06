@@ -10,9 +10,9 @@ body {
 
 .tile {
     background-color: rgb(198, 198, 198);
-    background-size: 100px;
-    width: 100px;
-    height: 100px;
+    background-size: 125px;
+    width: 125px;
+    height: 125px;
     border: solid 1px rgb(80, 80, 80);
 }
 
