@@ -24,6 +24,20 @@ body {
     height: 500px;
 }
 
+button {
+    border: solid 1px rgb(79, 79, 79);
+    background-color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+button:active {
+    background-color: rgb(231, 232, 249);
+}
+
 .grid {
     display: grid;
     grid-template-columns: auto auto auto;
@@ -72,20 +86,6 @@ body {
 
     .menu>* {
         margin: 10px;
-    }
-
-    button {
-        border: solid 1px rgb(79, 79, 79);
-        background-color: white;
-        font-weight: bold;
-        border-radius: 6px;
-        padding: 10px 15px;
-        cursor: pointer;
-        font-size: 17px;
-    }
-
-    button:active {
-        background-color: rgb(231, 232, 249);
     }
 
     .moveleft {
