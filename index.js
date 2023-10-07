@@ -27,6 +27,8 @@ class NewGame {
     shuffleImg(id) {
         const randnums = shuffleOrder();
         for (let i = 0; i < tiles.length - 1; i++) {
+            console.log(pictures[id][randnums[i]])
+            console.log(`url(${pictures[id][randnums[i]]})`)
             tiles[i].style.backgroundImage = `url(${pictures[id][randnums[i]]})`;
         }
     }

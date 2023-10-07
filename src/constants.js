@@ -15,7 +15,7 @@ const pictures = [
     ["./img/p09/0x0.jpg", "./img/p09/1x0.jpg", "./img/p09/2x0.jpg", "./img/p09/0x1.jpg", "./img/p09/1x1.jpg", "./img/p09/2x1.jpg", "./img/p09/0x2.jpg", "./img/p09/1x2.jpg", "./img/p09/2x2.jpg"],
     ["./img/p10/0x0.jpg", "./img/p10/1x0.jpg", "./img/p10/2x0.jpg", "./img/p10/0x1.jpg", "./img/p10/1x1.jpg", "./img/p10/2x1.jpg", "./img/p10/0x2.jpg", "./img/p10/1x2.jpg", "./img/p10/2x2.jpg"],
     ["./img/p11/0x0.jpg", "./img/p11/1x0.jpg", "./img/p11/2x0.jpg", "./img/p11/0x1.jpg", "./img/p11/1x1.jpg", "./img/p11/2x1.jpg", "./img/p11/0x2.jpg", "./img/p11/1x2.jpg", "./img/p11/2x2.jpg"],
-    ["./img/p12/0x0.jpg", "./img/p12/1x0.jpg", "./img/p12/2x0.jpg", "./img/p12/0x1.jpg", "./img/p12/1x1.jpg", "./img/p12/2x1.jpg", "./img/p12/0x2.jpg", "./img/p12/1x2.jpg", "./img/p12/2x2.jpg"],
+    ["./img/p12/0x0.jpg", "./img/p12/1x0.jpg", "./img/p12/2x0.jpg", "./img/p12/0x1.jpg", "./img/p12/1x1.jpg", "./img/p12/2x1.jpg", "./img/p12/0x2.jpg", "./img/p12/1x2.jpg", "./img/p12/2x2.jpg"]
 ];
 
 export { XTILES, YTILES, CAP, grid, tiles, pictures }
