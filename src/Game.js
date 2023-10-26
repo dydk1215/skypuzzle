@@ -56,6 +56,7 @@ export default class Game {
     }
 
     printWinner() {
-        console.log("winner!");
+        const messageArea = document.querySelector(".message");
+        messageArea.innerHTML = "🎉やった！🎉";
     }
 }
