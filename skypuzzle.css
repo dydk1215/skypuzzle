@@ -33,6 +33,7 @@ button {
     padding: 10px 15px;
     cursor: pointer;
     font-size: 17px;
+    width: 120px;
 }
 
 button:active {
@@ -55,6 +56,7 @@ button:active {
 
     .game {
         flex-direction: row;
+        justify-content: center;
     }
 
     .board {
