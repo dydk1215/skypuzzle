@@ -2,19 +2,36 @@ import { grid } from "./constants.js";
 
 export default class Timer {
   constructor() {
+    this.timer = [0, 0];
+    this.running = false;
     this.setTimer();
-    this.time = { hours: 0, minutes: 0, seconds: 0 };
   }
 
   setTimer() {
     grid.addEventListener("click", () => {
-      setInterval(() => {
-        this.time.seconds++;
-        console.log(this.time.seconds);
+      if (this.running) return;
+
+      this.intervalId = setInterval(() => {
+        this.timer[1]++;
+
+        if (this.timer[1] === 60) {
+          this.timer[0]++;
+          this.timer[1] = 0;
+        }
+
+        this.printTimer(this.timer);
       }, 1000);
-      grid.removeEventListener();
+      this.running = true;
     });
   }
 
-  endTimer() {}
+  printTimer(time) {
+    const timerArea = document.querySelector(".timer");
+    timerArea.textContent = `${String(time[0]).padStart(2, "0")}:${String(time[1]).padStart(2, "0")}`;
+  }
+
+  endTimer() {
+    clearInterval(this.intervalId);
+    this.intervalId = null;
+  }
 }

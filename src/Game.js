@@ -70,6 +70,7 @@ export default class Game {
   }
 
   printWinner() {
+    this.timer.endTimer();
     const messageArea = document.querySelector(".message");
     messageArea.innerHTML = "🎉やった！🎉";
   }
