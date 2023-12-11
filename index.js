@@ -1,44 +1,14 @@
-import { XTILES, YTILES, grid, tiles, pictures } from "./src/constants.js";
-import { create, shuffleOrder } from "./src/utils.js";
-import Game from "./src/Game.js";
+import NewGame from "./src/NewGame.js";
 
-class NewGame {
-  constructor(id) {
-    this.game = new Game(id);
-    this.drawBoard();
-    this.shuffleImg(id);
-  }
-
-  drawBoard() {
-    for (let i = 0; i < YTILES; i++) {
-      for (let j = 0; j < XTILES; j++) {
-        const tile = create("div");
-        tile.classList.add("tile", `x${j}`, `y${i}`);
-        if (i === YTILES - 1 && j === XTILES - 1) tile.classList.add("empty");
-        tile.addEventListener("click", (e) => {
-          this.game.makeMove(e);
-        });
-        grid.append(tile);
-      }
-    }
-  }
-
-  shuffleImg(id) {
-    const randnums = shuffleOrder();
-    for (let i = 0; i < tiles.length - 1; i++) {
-      console.log(pictures[id][randnums[i]]);
-      console.log(`url(${pictures[id][randnums[i]]})`);
-      tiles[i].style.backgroundImage = `url(${pictures[id][randnums[i]]})`;
-    }
-  }
-}
-
-const menu = document.querySelector(".menu");
-const buttons = menu.children;
+const menuDiv = document.querySelector(".menu");
+const buttons = menuDiv.children;
 for (const button of buttons) {
   button.addEventListener("click", (e) => {
+    menuDiv.classList.toggle("invisible");
+    document.querySelector(".board").classList.toggle("invisible");
     const gameId = e.target.value;
-    grid.innerHTML = "";
+    // grid.innerHTML = "";
+    // document.querySelector(".timer").innerHTML = "";
     new NewGame(gameId);
   });
 }

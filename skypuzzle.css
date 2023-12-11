@@ -2,6 +2,10 @@ body {
     margin: 0px;
 }
 
+.header {
+    padding-left: 50px;
+}
+
 .game {
     display: flex;
     flex-direction: column;
@@ -16,28 +20,53 @@ body {
     border: solid 1px rgb(80, 80, 80);
 }
 
-.board {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 500px;
-    height: 500px;
-}
-
 button {
-    border: solid 1px rgb(79, 79, 79);
-    background-color: white;
+    border: 0px;
+    background-color: rgb(0, 135, 173);
+    color: white;
     font-weight: bold;
-    border-radius: 6px;
+    border-radius: 10px;
     padding: 10px 15px;
     cursor: pointer;
-    font-size: 17px;
+    font-size: 1.4rem;
     width: 120px;
 }
 
-button:active {
-    background-color: rgb(231, 232, 249);
+.menu {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 500px;
+}
+
+.menu>* {
+    margin: 10px;
+}
+
+.menu button {
+    border-radius: 8px;
+    width: 70px;
+}
+
+.board-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 30px 15px;
+}
+
+.tile:hover {
+    opacity: 0.8;
+}
+
+.board {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+button:active, button:hover {
+    background-color: rgb(43, 188, 220);
 }
 
 .grid {
@@ -48,47 +77,24 @@ button:active {
     align-items: center;
 }
 
+.timer {
+    font-size: 2.3rem;
+    font-weight: 600;
+    font-family: Tahoma;
+}
+
 
 @media screen and (min-width: 700px) {
-    .header {
-        padding-left: 50px;
-    }
-
-    .game {
-        flex-direction: row;
-        justify-content: center;
-    }
-
-    .board {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 700px;
-        height: 700px;
-    }
-
     .tile {
-        background-color: rgb(198, 198, 198);
         background-size: 200px;
         width: 200px;
         height: 200px;
-        border: solid 1px rgb(80, 80, 80);
     }
 
-    .tile:hover {
-        opacity: 0.8;
-    }
-
-    .menu {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-items: center;
-        width: 120px;
-    }
-
-    .menu>* {
-        margin: 10px;
+    .timer {
+        font-size: 3rem;
+        font-weight: 900;
+        font-family: Tahoma;
     }
 
     .moveleft {
@@ -156,4 +162,8 @@ button:active {
             transform: translateY(200px);
         }
     }
+}
+
+.invisible {
+    display:none;
 }

@@ -5,23 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>thatskypuzzle</title>
-
     <link rel="stylesheet" href="./skypuzzle.css">
-
-<!--     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const parent = document.querySelector(".menu");
-            const list = parent.children;
-            for (const elem of list) {
-                elem.addEventListener("click", (e) => {
-                    const gameId = e.target.value;
-                    const parent = document.querySelector(".grid");
-                    parent.innerHTML = "";
-                    new NewGame(gameId);
-                })
-            }
-        });
-    </script> -->
 </head>
 
 <body>
@@ -30,27 +14,20 @@
     </div>
     <div class="game">
         <div class="menu">
-            <button value="0">パズル 1</button>
-            <button value="1">パズル 2</button>
-            <button value="2">パズル 3</button>
-            <button value="3">パズル 4</button>
-            <button value="4">パズル 5</button>
-            <button value="5">パズル 6</button>
-            <button value="6">パズル 7</button>
-            <button value="7">パズル 8</button>
-            <button value="8">パズル 9</button>
-            <button value="9">パズル 10</button>
-            <button value="10">パズル 11</button>
-            <button value="11">パズル 12</button>
+            <button value="0">1</button>
+            <button value="1">2</button>
+            <button value="2">3</button>
+            <button value="3">4</button>
+            <button value="4">5</button>
+            <button value="5">6</button>
+            <button value="6">7</button>
+            <button value="7">8</button>
+            <button value="8">9</button>
+            <button value="9">10</button>
+            <button value="10">11</button>
+            <button value="11">12</button>
         </div>
-        <div class="board">
-            <div class="message">
-            </div>
-            <div class="grid">
-            </div>
-            <div class="timer">
-                00:00
-            </div>
+        <div class="board invisible">
         </div>
     </div>
 

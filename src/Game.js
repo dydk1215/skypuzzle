@@ -1,4 +1,4 @@
-import { CAP, grid, tiles, pictures } from "./constants.js";
+import { CAP, pictures } from "./constants.js";
 import { getCoords, getImgURL } from "./utils.js";
 import Timer from "./Timer.js";
 
@@ -6,7 +6,7 @@ export default class Game {
   constructor(id) {
     this.id = id;
     this.answer = this.getAnswer(id);
-    this.timer = new Timer();
+    this.timer = new Timer(id);
   }
 
   getAnswer(id) {
@@ -26,6 +26,7 @@ export default class Game {
   }
 
   getTileImg(index) {
+    const tiles = document.querySelector(".grid").children;
     const el = tiles[index].style.backgroundImage.split('"');
     return el[1];
   }
@@ -52,6 +53,7 @@ export default class Game {
 
     this.switchTiles(targetTile, emptyTile, targetImg);
 
+    const grid = document.querySelector(".grid");
     if (grid.lastElementChild.classList.contains("empty")) this.checkWin();
   }
 
@@ -64,14 +66,30 @@ export default class Game {
       else winning.push(false);
     }
     if (winning.indexOf(false) < 0) {
-        this.timer.endTimer();
-        this.printWinner();
+      this.timer.endTimer();
+      this.printWinner();
     }
   }
 
   printWinner() {
     this.timer.endTimer();
-    const messageArea = document.querySelector(".message");
-    messageArea.innerHTML = "🎉やった！🎉";
+
+    const rec = localStorage.getItem("data");
+    const record = { gameId: this.id, time: this.timer.timer };
+    if (!rec) {
+      localStorage.setItem("data", JSON.stringify(record));
+    } else {
+      const oldRecord = JSON.parse(rec);
+
+      if (
+        oldRecord.time[0] > record.time[0] &&
+        oldRecord.time[1] >= record.time[1]
+      ) {
+        localStorage.setItem("data", JSON.stringify(record));
+      }
+    }
+
+    // const messageArea = document.querySelector(".message");
+    // messageArea.innerHTML = "🎉やった！🎉";
   }
 }

@@ -1,9 +1,10 @@
-const XTILES = 3;
-const YTILES = 3;
-const CAP = 9;
-const grid = document.querySelector(".grid");
-const tiles = grid.children;
-const pictures = [
+export const X_TILES = 3;
+export const Y_TILES = 3;
+export const CAP = 9;
+export const board = document.querySelector(".board");
+export const menu = document.querySelector(".menu");
+
+export const pictures = [
   [
     "./img/p01/0x0.jpg",
     "./img/p01/1x0.jpg",
@@ -137,5 +138,3 @@ const pictures = [
     "./img/p12/2x2.jpg",
   ],
 ];
-
-export { XTILES, YTILES, CAP, grid, tiles, pictures };
