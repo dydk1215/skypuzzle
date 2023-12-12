@@ -28,7 +28,7 @@ button {
     border-radius: 10px;
     padding: 10px 15px;
     cursor: pointer;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     width: 120px;
 }
 
@@ -89,6 +89,10 @@ button:active, button:hover {
         background-size: 200px;
         width: 200px;
         height: 200px;
+    }
+
+    button {
+        font-size: 1.4rem;
     }
 
     .timer {
@@ -166,4 +170,8 @@ button:active, button:hover {
 
 .invisible {
     display:none;
+}
+
+.mouse-disabled {
+    pointer-events: none;
 }

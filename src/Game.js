@@ -1,4 +1,4 @@
-import { CAP, pictures } from "./constants.js";
+import { CAP, pictures, X_DIRECTION, Y_DIRECTION } from "./constants.js";
 import { getCoords, getImgURL } from "./utils.js";
 import Timer from "./Timer.js";
 
@@ -51,10 +51,38 @@ export default class Game {
     )
       return;
 
+    document.querySelector(".grid").classList.add("mouse-disabled");
+
+    // const moveDirection = this.getMoveDirection(targetCoords, emptyCoords);
+    // targetTile.classList.add(`move-${moveDirection}`);
+
     this.switchTiles(targetTile, emptyTile, targetImg);
+    // targetTile.classList.remove(`move-${moveDirection}`);
 
     const grid = document.querySelector(".grid");
-    if (grid.lastElementChild.classList.contains("empty")) this.checkWin();
+    if (grid.lastElementChild.classList.contains("empty"))
+      return this.checkWin();
+
+    return this.reenableMouse();
+  }
+
+  reenableMouse() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        document.querySelector(".grid").classList.remove("mouse-disabled");
+        resolve(console.log("mouse reenabled"));
+      }, 100);
+    });
+  }
+
+  getMoveDirection(targetCoords, emptyCoords) {
+    const xDifference = emptyCoords.x - targetCoords.x;
+    if (xDifference !== 0) {
+      return X_DIRECTION.get(xDifference);
+    }
+
+    const yDifference = targetCoords.y - emptyCoords.y;
+    return Y_DIRECTION.get(yDifference);
   }
 
   checkWin() {
@@ -67,13 +95,13 @@ export default class Game {
     }
     if (winning.indexOf(false) < 0) {
       this.timer.endTimer();
-      this.printWinner();
+      return this.printWinner();
     }
+    return this.reenableMouse();
   }
 
   printWinner() {
-    this.timer.endTimer();
-
+    document.querySelector(".grid").classList.add("mouse-disabled");
     const rec = localStorage.getItem("data");
     const record = { gameId: this.id, time: this.timer.timer };
     if (!rec) {
@@ -88,8 +116,5 @@ export default class Game {
         localStorage.setItem("data", JSON.stringify(record));
       }
     }
-
-    // const messageArea = document.querySelector(".message");
-    // messageArea.innerHTML = "🎉やった！🎉";
   }
 }

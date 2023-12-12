@@ -4,6 +4,16 @@ export const CAP = 9;
 export const board = document.querySelector(".board");
 export const menu = document.querySelector(".menu");
 
+export const X_DIRECTION = new Map([
+  [1, "right"],
+  [-1, "left"],
+]);
+
+export const Y_DIRECTION = new Map([
+  [1, "up"],
+  [-1, "down"],
+]);
+
 export const pictures = [
   [
     "./img/p01/0x0.jpg",
