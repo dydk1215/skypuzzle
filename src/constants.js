@@ -1,20 +1,11 @@
 export const X_TILES = 3;
 export const Y_TILES = 3;
 export const CAP = 9;
+export const X_INDEX = 11;
 export const board = document.querySelector(".board");
 export const menu = document.querySelector(".menu");
 
-export const X_DIRECTION = new Map([
-  [1, "right"],
-  [-1, "left"],
-]);
-
-export const Y_DIRECTION = new Map([
-  [1, "up"],
-  [-1, "down"],
-]);
-
-export const pictures = [
+export const PICTURES = [
   [
     "./img/p01/0x0.jpg",
     "./img/p01/1x0.jpg",

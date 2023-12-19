@@ -1,4 +1,4 @@
-import { X_TILES, Y_TILES, board, pictures } from "./constants.js";
+import { X_TILES, Y_TILES, board, PICTURES } from "./constants.js";
 import { create, shuffleOrder } from "./utils.js";
 import Game from "./Game.js";
 
@@ -30,16 +30,26 @@ export default class NewGame {
   }
 
   drawTiles(grid) {
+    let leftSpace = 0;
+    let topSpace = 0;
+
     for (let i = 0; i < Y_TILES; i++) {
       for (let j = 0; j < X_TILES; j++) {
         const tile = create("div");
         tile.classList.add("tile", `x${j}`, `y${i}`);
+        tile.style.left = `${leftSpace}px`;
+        tile.style.top = `${topSpace}px`;
         if (i === Y_TILES - 1 && j === X_TILES - 1) tile.classList.add("empty");
+
         tile.addEventListener("click", (e) => {
           this.game.makeMove(e);
         });
         grid.append(tile);
+
+        leftSpace += 200;
       }
+      topSpace += 200;
+      leftSpace = 0;
     }
   }
 
@@ -47,7 +57,7 @@ export default class NewGame {
     const tiles = document.querySelector(".grid").children;
     const randnums = shuffleOrder();
     for (let i = 0; i < tiles.length - 1; i++) {
-      tiles[i].style.backgroundImage = `url(${pictures[id][randnums[i]]})`;
+      tiles[i].style.backgroundImage = `url(${PICTURES[id][randnums[i]]})`;
     }
   }
 
