@@ -13,11 +13,13 @@ body {
 }
 
 .tile {
-    background-color: rgb(198, 198, 198);
+    position: absolute;
+    box-sizing: border-box;
     background-size: 125px;
     width: 125px;
     height: 125px;
-    border: solid 1px rgb(80, 80, 80);
+    border: solid 1px rgb(120, 120, 120);
+    transition: all .1s;
 }
 
 button {
@@ -70,11 +72,11 @@ button:active, button:hover {
 }
 
 .grid {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    grid-template-rows: auto auto auto;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+    width: 375px;
+    height: 375px;
+    background-color: rgb(198, 198, 198);
+    border: solid 1px rgb(120, 120, 120);
 }
 
 .timer {
@@ -83,12 +85,20 @@ button:active, button:hover {
     font-family: Tahoma;
 }
 
+.empty {
+    border: 0;
+}
 
 @media screen and (min-width: 700px) {
     .tile {
         background-size: 200px;
         width: 200px;
         height: 200px;
+    }
+
+    .grid {
+        width: 600px;
+        height: 600px;
     }
 
     button {
@@ -102,73 +112,6 @@ button:active, button:hover {
     .timer {
         font-size: 3rem;
         font-weight: 900;
-        font-family: Tahoma;
-    }
-
-    .moveleft {
-        animation-name: move-left;
-        animation-duration: 2s;
-        animation-play-state: running;
-    }
-
-    @keyframes move-left {
-        0% {
-            transform: translateX(0);
-        }
-
-        100% {
-            transform: translateX(-200px);
-        }
-    }
-
-    .moveright {
-        animation-name: move-right;
-        animation-duration: 400ms;
-        animation-timing-function: linear;
-        animation-play-state: running;
-    }
-
-    @keyframes move-right {
-        0% {
-            transform: translateX(0);
-        }
-
-        100% {
-            transform: translateX(200px);
-        }
-    }
-
-    .moveup {
-        animation-name: move-up;
-        animation-duration: 1ms;
-        animation-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
-        animation-play-state: running;
-    }
-
-    @keyframes move-up {
-        0% {
-            transform: translateY(0);
-        }
-
-        100% {
-            transform: translateY(-200px);
-        }
-    }
-
-    .movedown {
-        animation-name: move-down;
-        animation-duration: 2s;
-        animation-play-state: running;
-    }
-
-    @keyframes move-down {
-        0% {
-            transform: translateY(0);
-        }
-
-        100% {
-            transform: translateY(200px);
-        }
     }
 }
 

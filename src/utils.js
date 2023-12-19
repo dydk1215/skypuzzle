@@ -39,13 +39,12 @@ const getCoords = (classes) => {
     if (coord[0] === "x") x = parseInt(coord.substring(1));
     if (coord[0] === "y") y = parseInt(coord.substring(1));
   }
-  const coords = { x: x, y: y };
-  return coords;
+  return { x, y };
 };
 
-const getImgURL = (element) => {
-  const elStyle = element.style.backgroundImage.split('"');
-  return elStyle[1];
+const getImgUrl = (element) => {
+  const imgUrl = element.style.backgroundImage.split('"');
+  return imgUrl[1];
 };
 
 export {
@@ -54,5 +53,5 @@ export {
   checkValidity,
   shuffleOrder,
   getCoords,
-  getImgURL,
+  getImgUrl,
 };

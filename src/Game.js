@@ -1,5 +1,5 @@
-import { CAP, pictures, X_DIRECTION, Y_DIRECTION } from "./constants.js";
-import { getCoords, getImgURL } from "./utils.js";
+import { CAP, PICTURES, X_INDEX } from "./constants.js";
+import { getCoords, getImgUrl } from "./utils.js";
 import Timer from "./Timer.js";
 
 export default class Game {
@@ -11,24 +11,35 @@ export default class Game {
 
   getAnswer(id) {
     const answer = new Map();
-    for (let i = 0; i < pictures[id].length; i++) {
-      if (i === pictures[id].length - 1) answer.set(i, "empty");
-      else answer.set(i, pictures[id][i]);
+
+    for (let i = 0; i < PICTURES[id].length - 1; i++) {
+      const key =
+        "x" + PICTURES[id][i][X_INDEX - 1] + "y" + PICTURES[id][i][X_INDEX + 1];
+      answer.set(key, PICTURES[id][i]);
     }
+
     return answer;
   }
 
-  switchTiles(curTarget, curEmpty, img) {
-    curEmpty.classList.remove("empty");
-    curEmpty.style.backgroundImage = `url(${img})`;
-    curTarget.classList.add("empty");
-    curTarget.removeAttribute("style");
-  }
+  switchTiles(curTarget, curEmpty) {
+    const curTargetLeft = curTarget.style.left;
+    const curTargetTop = curTarget.style.top;
+    const curEmptyLeft = curEmpty.style.left;
+    const curEmptyTop = curEmpty.style.top;
 
-  getTileImg(index) {
-    const tiles = document.querySelector(".grid").children;
-    const el = tiles[index].style.backgroundImage.split('"');
-    return el[1];
+    curTarget.style.left = curEmptyLeft;
+    curTarget.style.top = curEmptyTop;
+    curEmpty.style.left = curTargetLeft;
+    curEmpty.style.top = curTargetTop;
+
+    const curTargetCoords = [...curTarget.classList];
+    const curEmptyCoords = [...curEmpty.classList];
+
+    curTarget.classList.remove(...curTargetCoords);
+    curTarget.classList.add(...curEmptyCoords);
+    curTarget.classList.remove("empty");
+    curEmpty.classList.remove(...curEmptyCoords);
+    curEmpty.classList.add(...curTargetCoords, "empty");
   }
 
   makeMove(event) {
@@ -36,7 +47,6 @@ export default class Game {
     const emptyTile = document.querySelector(".empty");
     const targetCoords = getCoords(targetTile.classList);
     const emptyCoords = getCoords(emptyTile.classList);
-    const targetImg = getImgURL(targetTile);
 
     if (targetCoords.x !== emptyCoords.x && targetCoords.y !== emptyCoords.y)
       return;
@@ -51,70 +61,58 @@ export default class Game {
     )
       return;
 
-    document.querySelector(".grid").classList.add("mouse-disabled");
-
-    // const moveDirection = this.getMoveDirection(targetCoords, emptyCoords);
-    // targetTile.classList.add(`move-${moveDirection}`);
-
-    this.switchTiles(targetTile, emptyTile, targetImg);
-    // targetTile.classList.remove(`move-${moveDirection}`);
+    this.switchTiles(targetTile, emptyTile);
 
     const grid = document.querySelector(".grid");
-    if (grid.lastElementChild.classList.contains("empty"))
+
+    const lastChildClasses = [...grid.lastElementChild.classList];
+    if (
+      lastChildClasses.includes("empty") &&
+      lastChildClasses.includes("x2") &&
+      lastChildClasses.includes("y2")
+    ) {
       return this.checkWin();
-
-    return this.reenableMouse();
-  }
-
-  reenableMouse() {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        document.querySelector(".grid").classList.remove("mouse-disabled");
-        resolve(console.log("mouse reenabled"));
-      }, 100);
-    });
-  }
-
-  getMoveDirection(targetCoords, emptyCoords) {
-    const xDifference = emptyCoords.x - targetCoords.x;
-    if (xDifference !== 0) {
-      return X_DIRECTION.get(xDifference);
     }
-
-    const yDifference = targetCoords.y - emptyCoords.y;
-    return Y_DIRECTION.get(yDifference);
   }
 
   checkWin() {
-    const winning = [];
-    for (let i = 0; i < CAP; i++) {
-      const img = this.getTileImg(i);
-      if (img === undefined && this.answer.get(i) === "empty") continue;
-      if (this.answer.get(i) === img) winning.push(true);
-      else winning.push(false);
+    const tiles = document.querySelector(".grid").children;
+
+    for (let i = 0; i < CAP - 1; i++) {
+      const key = [...tiles[i].classList]
+        .filter((className) => className.length === 2)
+        .join("");
+      const imgUrl = getImgUrl(tiles[i]);
+
+      if (this.answer.get(key) !== imgUrl) return;
     }
-    if (winning.indexOf(false) < 0) {
-      this.timer.endTimer();
-      return this.printWinner();
-    }
-    return this.reenableMouse();
+
+    this.timer.endTimer();
+    return this.printWinner();
   }
 
   printWinner() {
     document.querySelector(".grid").classList.add("mouse-disabled");
-    const rec = localStorage.getItem("data");
-    const record = { gameId: this.id, time: this.timer.timer };
-    if (!rec) {
-      localStorage.setItem("data", JSON.stringify(record));
-    } else {
-      const oldRecord = JSON.parse(rec);
+    this.updateData();
+  }
 
-      if (
-        oldRecord.time[0] > record.time[0] &&
-        oldRecord.time[1] >= record.time[1]
-      ) {
-        localStorage.setItem("data", JSON.stringify(record));
-      }
+  updateData() {
+    const gameId = "p" + this.id;
+    const newRecord = {};
+    newRecord[gameId] = this.timer.timer;
+    const localData = localStorage.getItem("tspdata");
+
+    if (!localData) {
+      localStorage.setItem("tspdata", JSON.stringify(newRecord));
+      return;
+    }
+
+    const parsedData = JSON.parse(localData);
+
+    if (!parsedData[gameId] || this.timer.timer < parsedData[gameId]) {
+      parsedData[gameId] = this.timer.timer;
+      localStorage.setItem("tspdata", JSON.stringify(parsedData));
+      return;
     }
   }
 }
