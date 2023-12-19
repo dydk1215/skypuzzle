@@ -6,7 +6,9 @@ export default class NewGame {
   constructor(id) {
     this.drawBoard();
     this.game = new Game(id);
+    this.size = window.innerWidth < 700 ? "small" : "big";
     this.shuffleImg(id);
+    this.addResizeListener();
   }
 
   drawBoard() {
@@ -32,6 +34,7 @@ export default class NewGame {
   drawTiles(grid) {
     let leftSpace = 0;
     let topSpace = 0;
+    const unit = window.innerWidth < 700 ? 125 : 200;
 
     for (let i = 0; i < Y_TILES; i++) {
       for (let j = 0; j < X_TILES; j++) {
@@ -46,9 +49,9 @@ export default class NewGame {
         });
         grid.append(tile);
 
-        leftSpace += 200;
+        leftSpace += unit;
       }
-      topSpace += 200;
+      topSpace += unit;
       leftSpace = 0;
     }
   }
@@ -66,5 +69,56 @@ export default class NewGame {
     menuDiv.classList.toggle("invisible");
     board.innerHTML = "";
     board.classList.toggle("invisible");
+  }
+
+  addResizeListener() {
+    document.querySelector(".grid").addEventListener("transitionstart", () => {
+      if (window.innerWidth >= 700 && this.size === "small") {
+        this.resizeTiles("big");
+        this.size = "big";
+        return;
+      }
+      if (window.innerWidth < 700 && this.size === "big") {
+        this.resizeTiles("small");
+        this.size = "small";
+      }
+    });
+  }
+
+  resizeTiles(size) {
+    const tiles = document.querySelector(".grid").children;
+    switch (size) {
+      case "big":
+        {
+          for (const tile of tiles) {
+            const left = Number(
+              tile.style.left.substring(0, tile.style.left.indexOf("px"))
+            );
+            tile.style.left = left * 1.6 + "px";
+
+            const top = Number(
+              tile.style.top.substring(0, tile.style.top.indexOf("px"))
+            );
+            tile.style.top = top * 1.6 + "px";
+          }
+        }
+        break;
+      case "small":
+        {
+          for (const tile of tiles) {
+            const left = Number(
+              tile.style.left.substring(0, tile.style.left.indexOf("px"))
+            );
+            tile.style.left = left / 1.6 + "px";
+
+            const top = Number(
+              tile.style.top.substring(0, tile.style.top.indexOf("px"))
+            );
+            tile.style.top = top / 1.6 + "px";
+          }
+        }
+        break;
+      default:
+    }
   }
 }

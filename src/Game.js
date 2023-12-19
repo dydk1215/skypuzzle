@@ -93,19 +93,26 @@ export default class Game {
 
   printWinner() {
     document.querySelector(".grid").classList.add("mouse-disabled");
-    const rec = localStorage.getItem("data");
-    const record = { gameId: this.id, time: this.timer.timer };
-    if (!rec) {
-      localStorage.setItem("data", JSON.stringify(record));
-    } else {
-      const oldRecord = JSON.parse(rec);
+    this.updateData();
+  }
 
-      if (
-        oldRecord.time[0] > record.time[0] &&
-        oldRecord.time[1] >= record.time[1]
-      ) {
-        localStorage.setItem("data", JSON.stringify(record));
-      }
+  updateData() {
+    const gameId = "p" + this.id;
+    const newRecord = {};
+    newRecord[gameId] = this.timer.timer;
+    const localData = localStorage.getItem("tspdata");
+
+    if (!localData) {
+      localStorage.setItem("tspdata", JSON.stringify(newRecord));
+      return;
+    }
+
+    const parsedData = JSON.parse(localData);
+
+    if (!parsedData[gameId] || this.timer.timer < parsedData[gameId]) {
+      parsedData[gameId] = this.timer.timer;
+      localStorage.setItem("tspdata", JSON.stringify(parsedData));
+      return;
     }
   }
 }

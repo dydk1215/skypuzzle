@@ -73,8 +73,8 @@ button:active, button:hover {
 
 .grid {
     position: relative;
-    width: 600px;
-    height: 600px;
+    width: 375px;
+    height: 375px;
     background-color: rgb(198, 198, 198);
     border: solid 1px rgb(120, 120, 120);
 }
@@ -85,11 +85,20 @@ button:active, button:hover {
     font-family: Tahoma;
 }
 
+.empty {
+    border: 0;
+}
+
 @media screen and (min-width: 700px) {
     .tile {
         background-size: 200px;
         width: 200px;
         height: 200px;
+    }
+
+    .grid {
+        width: 600px;
+        height: 600px;
     }
 
     button {
@@ -104,46 +113,6 @@ button:active, button:hover {
         font-size: 3rem;
         font-weight: 900;
     }
-
-    @keyframes move-left {
-        0% {
-            transform: translateX(0);
-        }
-
-        100% {
-            transform: translateX(-200px);
-        }
-    }
-
-    @keyframes move-right {
-        0% {
-            transform: translateX(0);
-        }
-
-        100% {
-            transform: translateX(200px);
-        }
-    }
-
-    @keyframes move-up {
-        0% {
-            transform: translateY(0);
-        }
-
-        100% {
-            transform: translateY(-200px);
-        }
-    }
-
-    @keyframes move-down {
-        0% {
-            transform: translateY(0);
-        }
-
-        100% {
-            transform: translateY(200px);
-        }
-    }
 }
 
 .invisible {
@@ -152,8 +121,4 @@ button:active, button:hover {
 
 .mouse-disabled {
     pointer-events: none;
-}
-
-.empty {
-    border: 0;
 }
