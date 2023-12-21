@@ -1,10 +1,10 @@
-import { CAP, PICTURES, X_INDEX } from "./constants.js";
+import { CAP, PICTURES, X_INDEX, BASE_URL } from "./constants.js";
 import { getCoords, getImgUrl } from "./utils.js";
 import Timer from "./Timer.js";
 
 export default class Game {
   constructor(id) {
-    this.id = id;
+    this.id = Number(id);
     this.answer = this.getAnswer(id);
     this.timer = new Timer(id);
   }
@@ -93,7 +93,30 @@ export default class Game {
 
   printWinner() {
     document.querySelector(".grid").classList.add("mouse-disabled");
+    this.displayPuzzle();
     this.updateData();
+  }
+
+  displayPuzzle() {
+    const lastPiece =
+      BASE_URL + (this.id + 1).toString().padStart(2, "0") + "/2x2.jpg";
+    const emptyTile = document.querySelector(".empty");
+    emptyTile.classList.add("reveal");
+    emptyTile.style.animationPlayState = "running";
+    emptyTile.style.backgroundImage = `url(${lastPiece})`;
+
+    setTimeout(() => {
+      confetti({
+        particleCount: 150,
+        spread: 80,
+        origin: { y: 0.6 }
+      });
+      const grid = document.querySelector(".grid");
+      const fullImg =
+        BASE_URL + (this.id + 1).toString().padStart(2, "0") + "/full.jpg";
+      grid.style.backgroundImage = `url(${fullImg})`;
+      grid.innerHTML = "";
+    }, 1000);
   }
 
   updateData() {
