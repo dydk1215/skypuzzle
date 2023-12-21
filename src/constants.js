@@ -2,6 +2,7 @@ export const X_TILES = 3;
 export const Y_TILES = 3;
 export const CAP = 9;
 export const X_INDEX = 11;
+export const BASE_URL = "./img/p";
 export const board = document.querySelector(".board");
 export const menu = document.querySelector(".menu");
 

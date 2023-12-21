@@ -73,6 +73,7 @@ button:active, button:hover {
 
 .grid {
     position: relative;
+    background-size: 375px;
     width: 375px;
     height: 375px;
     background-color: rgb(198, 198, 198);
@@ -97,6 +98,7 @@ button:active, button:hover {
     }
 
     .grid {
+        background-size: 600px;
         width: 600px;
         height: 600px;
     }
@@ -112,6 +114,23 @@ button:active, button:hover {
     .timer {
         font-size: 3rem;
         font-weight: 900;
+    }
+}
+
+.reveal {
+    animation-name: reveal;
+    animation-duration: 1.2s;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+}
+
+@keyframes reveal {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
     }
 }
 
